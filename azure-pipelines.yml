@@ -81,8 +81,10 @@ stages:
 
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : flaskhello'
+            script:
+              pip install -r requirements.txt
             inputs:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'python3.7 application.py'
+              startUpCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 application:app'
