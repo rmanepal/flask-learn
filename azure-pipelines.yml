@@ -79,7 +79,7 @@ stages:
               versionSpec: '$(pythonVersion)'
             displayName: 'Use Python version'
           - script: 
-             pip install -r requirements.txt
+             pip install Flask
 
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : flaskhello'
